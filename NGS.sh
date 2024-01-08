@@ -20,7 +20,8 @@ java -jar /.../Trimmomatic-x.xx/trimmomatic-x.xx.jar PE -threads 2 -phred33 ./se
 
 /.../FastQC/fastqc -o ./fastqc_after -t 4 --nogroup *.fq
 #Here, we have to check if the quality is accaptable. Ifnot, it would be necessary to change the options on the Trimmomatics command
-
+#If any adapter used for the process of library preparation is observed we have to adjust the command to remove them. In this case, run the bellow commnad and check again the quality. Use the appropriate sequences provided by Trimmomatic for different reagents used for library preparation.
+#java -jar /.../Trimmomatic-x.xx/trimmomatic-0.39.jar PE -threads 2 -phred33 ./seq_R1.fastq ./seq_R2.fastq seq_PE_1.fq seq_SR_1.fq seq_PE_2.fq seq_SR_2.fq ILLUMINACLIP:/.../Trimmomatic-x.xx/adapters/NexteraPE-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:25 MINLEN:36
 fastx_quality_stats -Q 33 -i seq_PE_1.fq -o seq_PE_1.txt
 
 fastx_quality_stats -Q 33 -i seq_PE_2.fq -o seq_PE_2.txt
